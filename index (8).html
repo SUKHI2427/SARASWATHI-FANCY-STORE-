@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saraswathi Fancy — Konanakunte, Bengaluru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FBF7EF;
+    --cream:#F2E8D5;
+    --cream-deep:#EADFC6;
+    --charcoal:#2E2A24;
+    --charcoal-soft:#5B5346;
+    --gold:#B8892B;
+    --gold-light:#E9C874;
+    --gold-glow:#F6DE9E;
+    --wine:#6E2C3B;
+    --wine-soft:#8C4257;
+    --white:#FFFFFF;
+    --line:rgba(46,42,36,0.12);
+    --shadow:rgba(110,60,20,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.brand{
+    font-family:'Cinzel', serif;
+    letter-spacing:0.01em;
+    margin:0;
+    color:var(--charcoal);
+  }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:rgba(251,247,239,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1120px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:'Cinzel', serif;
+    font-size:1.15rem;
+    font-weight:600;
+    color:var(--wine);
+  }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-size:0.92rem;
+    color:var(--charcoal-soft);
+    padding-bottom:4px;
+    border-bottom:1px solid transparent;
+    transition:color 0.25s ease, border-color 0.25s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{
+    color:var(--wine);
+    border-bottom-color:var(--gold);
+  }
+  .nav-toggle{ display:none; }
+
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed;
+      top:60px; left:0; right:0;
+      background:var(--ivory);
+      flex-direction:column;
+      gap:0;
+      padding:8px 32px 18px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-8px);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity 0.2s ease, transform 0.2s ease;
+    }
+    .nav-links.open{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+    .nav-links li{ padding:10px 0; border-bottom:1px solid var(--line); }
+    .nav-links li:last-child{ border-bottom:none; }
+    .nav-toggle{
+      display:inline-flex;
+      flex-direction:column;
+      gap:5px;
+      background:none;
+      border:none;
+      cursor:pointer;
+      padding:6px;
+    }
+    .nav-toggle span{
+      width:22px; height:2px; background:var(--charcoal);
+    }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:168px 0 96px;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 85% 12%, rgba(184,137,43,0.16), transparent 55%),
+      var(--ivory);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.82rem;
+    color:var(--wine);
+    background:var(--cream);
+    border:1px solid var(--cream-deep);
+    padding:7px 14px;
+    border-radius:999px;
+    margin-bottom:28px;
+  }
+  .eyebrow-badge svg{ width:14px; height:14px; }
+
+  .brand-name{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    line-height:1.05;
+    font-weight:600;
+    background:linear-gradient(100deg, var(--gold) 0%, var(--gold-glow) 35%, var(--gold) 55%, var(--gold-light) 75%, var(--gold) 100%);
+    background-size:280% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 34px rgba(233,200,116,0.55);
+    animation:shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer{
+    0%{ background-position:0% center; }
+    50%{ background-position:100% center; }
+    100%{ background-position:0% center; }
+  }
+
+  .hero-tagline{
+    font-family:'Jost', sans-serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--charcoal-soft);
+    margin-top:14px;
+    max-width:38ch;
+  }
+  .hero-desc{
+    margin-top:22px;
+    max-width:46ch;
+    color:var(--charcoal-soft);
+    font-size:1.02rem;
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    border-radius:2px;
+    font-size:0.92rem;
+    text-decoration:none;
+    letter-spacing:0.02em;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn-gold{
+    background:linear-gradient(120deg, var(--gold), var(--gold-light));
+    color:var(--charcoal);
+    box-shadow:0 10px 28px var(--shadow);
+  }
+  .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 14px 32px var(--shadow); }
+  .btn-outline{
+    border:1px solid var(--charcoal);
+    color:var(--charcoal);
+    background:transparent;
+  }
+  .btn-outline:hover{ background:var(--charcoal); color:var(--ivory); }
+
+  .rating-row{
+    margin-top:30px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--charcoal-soft);
+    font-size:0.92rem;
+  }
+  .stars{ color:var(--gold); letter-spacing:2px; font-size:1rem; }
+
+  .hero-art{
+    position:relative;
+    aspect-ratio:1/1.1;
+    border-radius:4px;
+    background:
+      linear-gradient(160deg, var(--cream) 0%, var(--cream-deep) 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--cream-deep);
+  }
+  .hero-art svg{ width:62%; height:62%; }
+
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; max-width:280px; margin:0 auto; }
+    .hero{ padding-top:132px; }
+  }
+
+  /* ---------- SECTION GENERICS ---------- */
+  section{ padding:88px 0; }
+  .section-cream{ background:var(--cream); }
+  .kicker{
+    font-size:0.88rem;
+    color:var(--wine);
+    font-style:italic;
+    margin-bottom:10px;
+  }
+  .section-head{
+    max-width:640px;
+    margin-bottom:52px;
+  }
+  .section-head h2{
+    font-size:clamp(1.7rem, 3vw, 2.3rem);
+    font-weight:600;
+  }
+  .section-head p{
+    margin-top:14px;
+    color:var(--charcoal-soft);
+    font-size:1.02rem;
+  }
+  .divider{
+    width:56px; height:2px;
+    background:var(--gold);
+    margin:18px 0;
+    border:none;
+  }
+
+  /* ---------- STORY ---------- */
+  .story-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:64px;
+    align-items:start;
+  }
+  .story-figure{
+    border:1px solid var(--cream-deep);
+    background:var(--white);
+    padding:34px;
+    border-radius:4px;
+  }
+  .story-figure .big-stat{
+    font-family:'Cinzel', serif;
+    font-size:2.6rem;
+    color:var(--wine);
+  }
+  .story-figure .stat-label{
+    font-size:0.88rem;
+    color:var(--charcoal-soft);
+    margin-top:4px;
+  }
+  .story-figure hr.divider{ margin:22px 0; }
+  .story-text p{ margin:0 0 18px; color:var(--charcoal-soft); }
+  .story-text p:last-child{ margin-bottom:0; }
+  .story-text strong{ color:var(--charcoal); font-weight:500; }
+
+  @media (max-width:860px){
+    .story-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- CATEGORY STRIP ---------- */
+  .cat-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .cat-cell{
+    background:var(--ivory);
+    padding:30px 22px;
+    text-align:center;
+  }
+  .cat-cell svg{ width:34px; height:34px; margin:0 auto 14px; color:var(--gold); }
+  .cat-cell h3{ font-size:0.98rem; font-weight:500; font-family:'Jost',sans-serif; }
+  @media (max-width:760px){
+    .cat-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* ---------- GALLERY / AISLES ---------- */
+  .aisle-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  .aisle-card{
+    background:var(--white);
+    border:1px solid var(--cream-deep);
+    border-radius:4px;
+    padding:26px 22px;
+    cursor:pointer;
+    position:relative;
+    transition:border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .aisle-card:hover, .aisle-card:focus-visible{
+    border-color:var(--gold);
+    box-shadow:0 12px 26px var(--shadow);
+  }
+  .aisle-num{
+    font-family:'Cinzel', serif;
+    font-size:0.78rem;
+    color:var(--gold);
+    letter-spacing:0.08em;
+  }
+  .aisle-card svg{ width:38px; height:38px; margin:16px 0 14px; color:var(--wine); }
+  .aisle-card h3{ font-size:1.02rem; font-weight:500; font-family:'Jost',sans-serif; }
+  .aisle-card p.aisle-sub{
+    margin-top:6px;
+    font-size:0.86rem;
+    color:var(--charcoal-soft);
+  }
+  .aisle-detail{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.35s ease;
+    font-size:0.88rem;
+    color:var(--charcoal-soft);
+  }
+  .aisle-card[aria-expanded="true"] .aisle-detail{
+    max-height:140px;
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid var(--line);
+  }
+  @media (max-width:860px){
+    .aisle-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:520px){
+    .aisle-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- REVIEWS ---------- */
+  .review-top{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:44px;
+  }
+  .review-score{
+    font-family:'Cinzel', serif;
+    font-size:3.2rem;
+    color:var(--wine);
+  }
+  .review-scroll{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  .review-card{
+    background:var(--ivory);
+    border:1px solid var(--cream-deep);
+    border-radius:4px;
+    padding:26px;
+  }
+  .review-card .stars{ margin-bottom:14px; display:block; }
+  .review-card p{ color:var(--charcoal-soft); font-size:0.95rem; margin:0 0 16px; }
+  .review-name{ font-size:0.88rem; color:var(--charcoal); }
+  @media (max-width:860px){
+    .review-scroll{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- VISIT ---------- */
+  .visit-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:stretch;
+  }
+  .visit-card{
+    background:var(--white);
+    border:1px solid var(--cream-deep);
+    padding:36px;
+    border-radius:4px;
+  }
+  .visit-row{
+    display:flex;
+    gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .visit-row:last-child{ border-bottom:none; }
+  .visit-row svg{ width:20px; height:20px; color:var(--gold); flex-shrink:0; margin-top:2px; }
+  .visit-row h4{ font-size:0.95rem; margin:0 0 4px; font-weight:500; font-family:'Jost',sans-serif; }
+  .visit-row p{ margin:0; color:var(--charcoal-soft); font-size:0.9rem; }
+  .map-frame{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--cream-deep);
+    min-height:340px;
+  }
+  .map-frame iframe{ width:100%; height:100%; min-height:340px; border:0; }
+  @media (max-width:860px){
+    .visit-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background:var(--charcoal);
+    color:var(--ivory);
+    text-align:center;
+    padding:80px 0;
+  }
+  .cta-band h2{ color:var(--gold-light); font-size:clamp(1.6rem,3vw,2.2rem); }
+  .cta-band p{ color:#C9C2B4; max-width:52ch; margin:18px auto 32px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ivory);
+    padding:52px 0 36px;
+    border-top:1px solid var(--line);
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .footer-mark{ font-family:'Cinzel',serif; color:var(--wine); font-size:1.1rem; }
+  .footer-note{ color:var(--charcoal-soft); font-size:0.85rem; margin-top:8px; max-width:38ch; }
+  .footer-links{ display:flex; gap:22px; list-style:none; padding:0; margin:0; }
+  .footer-links a{ text-decoration:none; color:var(--charcoal-soft); font-size:0.88rem; }
+  .footer-links a:hover{ color:var(--wine); }
+  .footer-bottom{
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-size:0.8rem;
+    color:var(--charcoal-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">Saraswathi Fancy</div>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#stock">What We Stock</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#visit">Visit Us</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.4L12 16.8 5.7 21l2.3-7.4-6-4.4h7.6z"/></svg>
+        Konanakunte's neighbourhood fancy store
+      </div>
+      <h1 class="brand-name">Saraswathi Fancy</h1>
+      <p class="hero-tagline">Where every little thing sparkles</p>
+      <p class="hero-desc">A single shopfront on Chunchaghatta Main Road stocked floor to ceiling with bangles, gifts, festival needs and the small essentials every household keeps running back for.</p>
+      <div class="hero-actions">
+        <a href="#gallery" class="btn btn-gold">Browse the aisles</a>
+        <a href="#visit" class="btn btn-outline">Get directions</a>
+      </div>
+      <div class="rating-row">
+        <span class="stars">★★★★☆</span>
+        <span>4.1 out of 5 · 26 Google reviews</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 200 220" fill="none" stroke="#B8892B" stroke-width="1.3">
+        <circle cx="100" cy="60" r="34"/>
+        <circle cx="100" cy="60" r="22"/>
+        <path d="M40 130c20-14 40-14 60 0s40 14 60 0" />
+        <path d="M40 155c20-14 40-14 60 0s40 14 60 0" />
+        <path d="M40 180c20-14 40-14 60 0s40 14 60 0" />
+        <path d="M100 94v20" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO STRIP ============ -->
+<section style="padding:56px 0;">
+  <div class="wrap" style="max-width:760px; text-align:center;">
+    <p style="font-size:1.15rem; font-family:'Jost',sans-serif; font-style:italic; color:var(--charcoal-soft);">
+      "A fancy store, in the old sense of the word — the kind of shop that has exactly the ribbon, the rakhi, the bindi packet or the birthday candle you didn't know you needed, kept somewhere on a shelf someone can always find."
+    </p>
+  </div>
+</section>
+
+<!-- ============ OUR STORY ============ -->
+<section id="story" class="section-cream">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-figure">
+        <div class="big-stat">4.1★</div>
+        <div class="stat-label">Average rating from 26 Google reviews</div>
+        <hr class="divider">
+        <div class="big-stat">8</div>
+        <div class="stat-label">Aisles of everyday and festive stock</div>
+        <hr class="divider">
+        <div class="big-stat">1</div>
+        <div class="stat-label">Shopfront, Chunchaghatta Main Road</div>
+      </div>
+      <div class="story-text">
+        <div class="kicker">Our Story</div>
+        <h2 style="font-size:1.9rem; margin-bottom:20px;">A shop built the way a neighbourhood needs one</h2>
+        <p>Saraswathi Fancy started the way most good fancy stores do — as a small counter that carried a bit of everything, run by people who knew that a household rarely needs just one thing at a time. A bangle set here, a packet of diyas there, a birthday card picked up on the way home.</p>
+        <p>Over the years the counter grew into a full shopfront on Chunchaghatta Main Road, but the idea never changed. <strong>Stock what a family actually reaches for</strong>, keep it easy to find, and know the regulars by name.</p>
+        <p>Today the shop is arranged into aisles rather than piles — cosmetics separated from pooja items, toys away from stationery — so a quick visit stays quick, and a longer browse still turns up something you weren't looking for.</p>
+        <p><em>Have the real story of the shop, its founding year or a family detail you'd like told here? Swap this section for it — this is written as a warm placeholder until then.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT WE STOCK ============ -->
+<section id="stock">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">What We Stock</div>
+      <h2>Eight aisles, one trip</h2>
+      <p>From daily-use cosmetics to festival essentials, the shop is organised so each aisle covers one part of the household list.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Bangles &amp; Jewellery</h3>
+      </div>
+      <div class="cat-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9l8-5 8 5"/><path d="M12 9v11"/></svg>
+        <h3>Gift Items</h3>
+      </div>
+      <div class="cat-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 3h6v4H9z"/><path d="M7 7h10l1 14H6z"/></svg>
+        <h3>Cosmetics &amp; Beauty</h3>
+      </div>
+      <div class="cat-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c2 3 3 5.5 3 8a3 3 0 11-6 0c0-2.5 1-5 3-8z"/></svg>
+        <h3>Pooja &amp; Festival</h3>
+      </div>
+      <div class="cat-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>
+        <h3>Toys &amp; Games</h3>
+      </div>
+      <div class="cat-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M14 3v5h5"/></svg>
+        <h3>Stationery</h3>
+      </div>
+      <div class="cat-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 12h18"/><path d="M12 8v12"/><path d="M12 8c-2-3-6-3-6 0s4 3 6 0z"/><path d="M12 8c2-3 6-3 6 0s-4 3-6 0z"/></svg>
+        <h3>Home Décor</h3>
+      </div>
+      <div class="cat-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3v18"/><path d="M6 7c4-4 8 0 12-2"/><path d="M6 14c4-4 8 0 12-2"/></svg>
+        <h3>Hair Accessories</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery" class="section-cream">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Gallery</div>
+      <h2>Walk the aisles</h2>
+      <p>Tap an aisle to see what's typically kept there. Photos of the actual shopfront and shelves can be dropped in here once you send them across.</p>
+    </div>
+    <div class="aisle-grid" id="aisleGrid">
+      <!-- Aisle 1 -->
+      <div class="aisle-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="aisle-num">Aisle 01</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Bangles &amp; Jewellery</h3>
+        <p class="aisle-sub">Glass, metal &amp; artificial sets</p>
+        <div class="aisle-detail">Rows of bangles sorted by colour and size, alongside earrings, chains and artificial jewellery for daily wear and festive occasions.</div>
+      </div>
+      <!-- Aisle 2 -->
+      <div class="aisle-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="aisle-num">Aisle 02</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9l8-5 8 5"/><path d="M12 9v11"/></svg>
+        <h3>Gift Items</h3>
+        <p class="aisle-sub">Return gifts &amp; wrapped boxes</p>
+        <div class="aisle-detail">Ready gift boxes, showpieces and return-gift options for birthdays, weddings and housewarmings, with wrapping done on request.</div>
+      </div>
+      <!-- Aisle 3 -->
+      <div class="aisle-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="aisle-num">Aisle 03</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 3h6v4H9z"/><path d="M7 7h10l1 14H6z"/></svg>
+        <h3>Cosmetics &amp; Beauty</h3>
+        <p class="aisle-sub">Everyday essentials</p>
+        <div class="aisle-detail">Bindis, kajal, hair oil, soaps and the small beauty essentials picked up on a regular basis, kept near the front for quick visits.</div>
+      </div>
+      <!-- Aisle 4 -->
+      <div class="aisle-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="aisle-num">Aisle 04</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c2 3 3 5.5 3 8a3 3 0 11-6 0c0-2.5 1-5 3-8z"/></svg>
+        <h3>Pooja &amp; Festival</h3>
+        <p class="aisle-sub">Diyas, incense &amp; décor</p>
+        <div class="aisle-detail">Diyas, agarbatti, kumkum, festoons and seasonal décor that gets restocked ahead of every major festival.</div>
+      </div>
+      <!-- Aisle 5 -->
+      <div class="aisle-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="aisle-num">Aisle 05</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>
+        <h3>Toys &amp; Games</h3>
+        <p class="aisle-sub">For every age group</p>
+        <div class="aisle-detail">A small toy corner with balloons, board games and party favours for children's birthdays and get-togethers.</div>
+      </div>
+      <!-- Aisle 6 -->
+      <div class="aisle-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="aisle-num">Aisle 06</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M14 3v5h5"/></svg>
+        <h3>Stationery</h3>
+        <p class="aisle-sub">School &amp; office supplies</p>
+        <div class="aisle-detail">Notebooks, pens, greeting cards and craft supplies kept stocked for the school term and last-minute project needs.</div>
+      </div>
+      <!-- Aisle 7 -->
+      <div class="aisle-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="aisle-num">Aisle 07</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 12h18"/><path d="M12 8v12"/><path d="M12 8c-2-3-6-3-6 0s4 3 6 0z"/><path d="M12 8c2-3 6-3 6 0s-4 3-6 0z"/></svg>
+        <h3>Home Décor</h3>
+        <p class="aisle-sub">Showpieces &amp; wall art</p>
+        <div class="aisle-detail">Small showpieces, photo frames, wall hangings and décor pieces for a home refresh or a housewarming gift.</div>
+      </div>
+      <!-- Aisle 8 -->
+      <div class="aisle-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="aisle-num">Aisle 08</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3v18"/><path d="M6 7c4-4 8 0 12-2"/><path d="M6 14c4-4 8 0 12-2"/></svg>
+        <h3>Hair Accessories</h3>
+        <p class="aisle-sub">Clips, bands &amp; ribbons</p>
+        <div class="aisle-detail">Hair clips, bands, ribbons and clasps for every age, from school-day basics to occasion pieces.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="review-top">
+      <div class="review-score">4.1★</div>
+      <div>
+        <div class="stars">★★★★☆</div>
+        <div style="color:var(--charcoal-soft); font-size:0.92rem;">Based on 26 reviews on Google</div>
+      </div>
+    </div>
+    <div class="review-scroll">
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"Small shop but they somehow have everything — went in for rakhi thread and walked out with half my festival shopping done."</p>
+        <div class="review-name">— Sample review, Konanakunte resident</div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★☆</span>
+        <p>"Good range of bangles and gift items for the price. Staff helped me put together a return-gift order quickly."</p>
+        <div class="review-name">— Sample review, local customer</div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★☆</span>
+        <p>"Handy neighbourhood store — my go-to for last-minute birthday and pooja items."</p>
+        <div class="review-name">— Sample review, nearby shopper</div>
+      </div>
+    </div>
+    <p style="margin-top:28px; color:var(--charcoal-soft); font-size:0.88rem; font-style:italic;">These are placeholder reviews written in the style of typical shop feedback — replace them with the shop's real Google reviews whenever you're ready.</p>
+  </div>
+</section>
+
+<!-- ============ VISIT US ============ -->
+<section id="visit" class="section-cream">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Visit Us</div>
+      <h2>Find the shop</h2>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-card">
+        <div class="visit-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6.4-7-11a7 7 0 0114 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div>
+            <h4>Address</h4>
+            <p>Chunchaghatta Main Road, Konanakunte, Bengaluru, Karnataka</p>
+          </div>
+        </div>
+        <div class="visit-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div>
+            <h4>Hours</h4>
+            <p>Typically open through the day, closed late evening — confirm current timings on call.</p>
+          </div>
+        </div>
+        <div class="visit-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L8 9.7a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.7 2z"/></svg>
+          <div>
+            <h4>Phone</h4>
+            <p>Add the shop's contact number here for calls and WhatsApp enquiries.</p>
+          </div>
+        </div>
+        <div class="visit-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.4L12 16.8 5.7 21l2.3-7.4-6-4.4h7.6z"/></svg>
+          <div>
+            <h4>Rating</h4>
+            <p>4.1 out of 5 from 26 Google reviews</p>
+          </div>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps?q=Chunchaghatta+Main+Road+Konanakunte+Bengaluru&output=embed"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Map showing Saraswathi Fancy location"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Everything for the list you forgot you had</h2>
+    <p>Drop by Chunchaghatta Main Road — if it's a small everyday thing or a festive one-off, there's a good chance it's already on a shelf here.</p>
+    <a href="#visit" class="btn btn-gold">Plan your visit</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-mark">Saraswathi Fancy</div>
+        <p class="footer-note">Chunchaghatta Main Road, Konanakunte, Bengaluru. A neighbourhood fancy store for gifts, festival needs and everyday essentials.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#stock">What We Stock</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#visit">Visit Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Saraswathi Fancy. Placeholder site — replace sample text and reviews with real details.</span>
+      <span>Made with care for a local favourite.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Aisle expand/collapse
+  document.querySelectorAll('.aisle-card').forEach(card => {
+    function toggle(){
+      const expanded = card.getAttribute('aria-expanded') === 'true';
+      card.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    }
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
